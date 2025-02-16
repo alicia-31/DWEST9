@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Pokémon</title>
-    <style> 
-        body {
-            font-family: Arial, sans-serif;
+    <title>Detalles del Pokémon</title> 
+
+    <style>
+         body {
+            font-family: "Times New Roman", Times, serif;
             background-color: #f4f4f9;
             margin: 0;
             padding: 0;
@@ -14,7 +15,7 @@
         }
         
         header {
-            background-color: #80deea;
+            background-color:rgb(166, 121, 233);
             padding: 20px;
             text-align: center;
             color: black;
@@ -38,11 +39,11 @@
         }
 
         nav a:hover {
-            color: #b2ebf2;
+            color: rgb(198, 167, 243); 
         }
         
         .container {
-            max-width: 800px;
+            max-width: 300px;
             margin: 30px auto;
             padding: 20px;
             background-color: white;
@@ -52,37 +53,33 @@
         }
         
         ul {
-    list-style-type: none; /* Elimina los puntos de lista predeterminados */
-    padding: 0; /* Elimina el padding por defecto */
-    margin: 0; /* Elimina el margen por defecto */
-    display: flex;
-    flex-direction: column; /* Alinea los elementos de la lista de manera vertical */
-    gap: 10px; /* Espacio entre los elementos */
-}
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex;
+            flex-direction: column; 
+            gap: 10px; 
+        }
 
-li {
-    background-color: #80deea; /* Fondo color suave */
-    padding: 12px 20px; /* Relleno interno para los elementos de la lista */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para los elementos */
-    text-align: left; /* Alineación del texto a la izquierda */
-    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves para hover */
-}
+        li {
+            background-color: rgb(166, 121, 233); 
+            padding: 12px 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+            text-align: center;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
-li:hover {
-    background-color: #4dd0e1; /* Cambia el color de fondo al pasar el cursor */
-    transform: scale(1.05); /* Un ligero aumento de tamaño al pasar el ratón */
-}
+        li:hover {
+            background-color:rgb(198, 167, 243); 
+            transform: scale(1.05); 
+        }
 
-a {
-    text-decoration: none; /* Elimina el subrayado del enlace */
-    color: black; /* Color del texto */
-    font-weight: bold; /* Negrita para destacar los nombres de los Pokémon */
-}
-
-a:hover {
-    color: #004d40; /* Cambia el color del texto al pasar el ratón */
-}
+        a {
+            text-decoration: none; 
+            color: black; 
+            font-weight: bold; 
+        }
 
         
         footer {
@@ -99,8 +96,8 @@ a:hover {
             border-radius: 5px;
             margin-top: 30px;
         }
-
     </style>
+
 </head>
 <body>
 
@@ -110,44 +107,43 @@ a:hover {
 
     <nav>
         <a href="index.php">Inicio</a>
-        <a href="about.php">Acerca de</a>
     </nav>
     
-    <div class="container">
+    <section class="container">
 
         <?php
 
         /**
-         * Función para obtener los detalles de un Pokémon.
+         * Función que obtiene los detalles de un Pokemon
          * 
-         * Realiza una solicitud HTTP a la API de Pokémon para obtener los detalles
-         * de los primeros 20 Pokémon.
+         * con una solicitud HTTP a la API obtiene los detalles
+         * de los primeros 30 Pokemon.
          *
-         * @return array|false Devuelve un arreglo con los datos de los Pokémon o false si hubo un error.
+         * @return array|false Devuelve un array con los datos de los Pokemon o false si hay un error.
          */
         function obtener_pokemon_lista() {
-            $url = "https://pokeapi.co/api/v2/pokemon?limit=20"; // Limitamos a 20 Pokémon
+            $url = "https://pokeapi.co/api/v2/pokemon?limit=30"; // Se limita a 30 Pokemon
 
-            // Realizamos la solicitud a la API
+            // realiza la solicitud a la API
             $json_data = file_get_contents($url);
 
-            // Verificamos si la solicitud fue exitosa
+            // Verifica si la solicitud tuvo exito
             if ($json_data === FALSE) {
-                return false;  // Retornamos false si no se pudo obtener la respuesta
+                return false;  // devuelve false si no tiene respuesta
             }
 
-            // Decodificamos el JSON obtenido a un arreglo PHP
+            // Decodifica el JSON obtenido a un array PHP
             return json_decode($json_data, true);
         }
 
-        // Llamamos a la función para obtener la lista de Pokémon
+        // Llama a la funcion para obtener la lista
         $data = obtener_pokemon_lista();
 
-        // Verificamos si los datos fueron obtenidos correctamente
+        // Verifica si los datos se obtienen correctamente
         if ($data === false) {
             echo "<p>No se pudieron obtener los datos de los Pokémon.</p>";
         } else {
-            // Mostramos los detalles de los Pokémon en formato HTML
+            // Muestra  detalles de los Pokemon en formato HTML
             echo "<h2>Lista de Pokémon</h2>";
             echo "<ul>";
             foreach ($data['results'] as $pokemon) {
@@ -155,18 +151,17 @@ a:hover {
             }
             echo "</ul>";
             
-            // Mostrar los mismos datos en formato JSON
-           //echo "<h3>Datos en formato JSON:</h3>";
-           //echo "<pre>";
-           //echo json_encode($data, JSON_PRETTY_PRINT);  // Mostramos los datos en JSON con formato legible
-           //echo "</pre>";
+           //muestra los datos en formato JSON
+           echo "<h3>Datos en formato JSON:</h3>";
+           echo "<pre>";
+           echo json_encode($data, JSON_PRETTY_PRINT);  // datos en JSON en un formato legible
+           echo "</pre>";
         }
         ?>
-
-    </div>
+    </section>
 
     <footer>
-        <p>Aplicación Pokémon. Tarea 9 DWES.</p>
+        <p>DWES Tarea 9 - Alicia Nieto Juárez</p>
     </footer>
 
 </body>
