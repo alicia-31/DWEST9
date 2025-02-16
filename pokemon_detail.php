@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles del Pokémon</title>
-</head>
-<body>
-
-    <header>
-        <h1>Aplicación Pokémon</h1>
-        <style> 
+    <style> 
         body {
             font-family: "Times New Roman", Times, serif;
             background-color: #f4f4f9;
@@ -64,6 +59,11 @@
             margin-top: 30px;
         }
     </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aplicación Pokémon</h1>
     </header>
 
     <nav>
